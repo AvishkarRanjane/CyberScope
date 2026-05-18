@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="/#ip">IP Tracker</a>
+                    <a href="/#phone">Phone Lookup</a>
+                    <a href="/#username">Username Scanner</a>
+                </div>
+            </li>
+            <li><a href="/resources" class="nav-link">Resources</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="page-hero" style="margin-top: 70px;">
+    <div class="hero-content">
+        <h1>Contact Us</h1>
+        <p>Get in touch with our support team</p>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="contact-page-section">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>Have questions or feedback? We'd love to hear from you. Our team is here to help!</p>
+            
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email Support</h3>
+                    <p><a href="mailto:support@cyberscope.io">support@cyberscope.io</a></p>
+                    <small>Response time: 24 hours</small>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Phone</h3>
+                    <p>+1 (***) 123-4567</p>
+                    <small>Mon-Fri 9AM-6PM EST</small>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Office</h3>
+                    <p>Cybersecurity Hub<br>Mumbai, ** 94105</p>
+                    <small>India</small>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Live Chat</h3>
+                    <p>Available Daily</p>
+                    <small>9AM-10PM EST</small>
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form">
+            <h2>Send us a Message</h2>
+            
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                    <option value="">Select a subject</option>
+                    <option value="support">Technical Support</option>
+                    <option value="billing">Billing Inquiry</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" placeholder="Your message..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-box">
+                <h3>How quickly will I get a response?</h3>
+                <p>We aim to respond to all inquiries within 24 hours. Urgent issues may be resolved faster.</p>
+            </div>
+            <div class="faq-box">
+                <h3>What are your support hours?</h3>
+                <p>Our support team is available Monday-Friday, 9AM-6PM EST. We also have automated support available 24/7.</p>
+            </div>
+            <div class="faq-box">
+                <h3>Can I schedule a demo?</h3>
+                <p>Yes! Email us at commercial@cyberscope.io to schedule a personalized demo with our team.</p>
+            </div>
+            <div class="faq-box">
+                <h3>Do you offer API support?</h3>
+                <p>Absolutely. Our technical team provides dedicated support for API integrations and development.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.contact-page-section {
+    padding: 80px 40px;
+    background: var(--darker-bg);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.contact-info h2,
+.contact-form h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.info-cards {
+    display: grid;
+    gap: 20px;
+}
+
+.info-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    transform: translateX(5px);
+}
+
+.info-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.info-card h3 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    color: var(--text-muted);
+    margin: 5px 0;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.info-card a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.info-card a:hover {
+    text-decoration: underline;
+}
+
+.info-card small {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.contact-form {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 40px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    background: rgba(0, 212, 255, 0.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    width: 100%;
+}
+
+.faq-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.faq-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.faq-box {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    transition: var(--transition);
+}
+
+.faq-box:hover {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    transform: translateY(-5px);
+}
+
+.faq-box h3 {
+    color: var(--text-light);
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+.faq-box p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-form {
+        padding: 30px;
+    }
+
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+}
+</style>
+
+</body>
+</html>

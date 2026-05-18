@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Loading Overlay for Analysis -->
+<div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-container">
+        <div class="hacking-display">
+            <div class="scan-line"></div>
+            <div class="terminal-text">
+                <div class="text-line">$ CONNECTING TO DATABASE...</div>
+                <div class="text-line">$ SCANNING SYSTEMS...</div>
+                <div class="text-line">$ RETRIEVING DATA...</div>
+                <div class="text-line cursor">></div>
+            </div>
+            <div class="loading-spinner">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <p class="loading-text">ANALYZING...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Fixed Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="#ip">IP Tracker</a>
+                    <a href="#phone">Phone Lookup</a>
+                    <a href="#username">Username Tracker</a>
+                </div>
+            </li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section with Image Slideshow -->
+<section id="home" class="hero">
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="{{ url_for('static', filename='images/ip-bg.png') }}" alt="IP Intelligence">
+        </div>
+        <div class="slide fade">
+            <img src="{{ url_for('static', filename='images/phone-bg.png') }}" alt="Phone Lookup">
+        </div>
+        <div class="slide fade">
+            <img src="{{ url_for('static', filename='images/username-bg.png') }}" alt="Username Scanner">
+        </div>
+        
+        <!-- Slide Controls -->
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        
+        <!-- Slide Dots -->
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text-wrapper">
+            <h1 class="hero-title">OSINT Intelligence Dashboard</h1>
+            <p class="hero-subtitle">Advanced Public Data Analysis for Cybersecurity Research</p>
+            <div class="hero-buttons">
+                <a href="#ip" class="btn btn-primary">Start Analyzing</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- IP Intelligence Section -->
+<section id="ip" class="service-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2><i class="fas fa-network-wired"></i> IP Intelligence Lookup</h2>
+            <p class="section-subtitle">Discover detailed information about any public IP address</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="ipForm" class="search-form" data-service="ip">
+                <div class="form-group">
+                    <input type="text" id="ipInput" name="ip_address" placeholder="Enter Public IP Address (e.g., 8.8.8.8)" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Analyze IP
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Terminal Output -->
+            <div id="ipOutput" class="terminal-output" style="display:none;">
+                <div class="terminal-header">
+                    <span>TERMINAL OUTPUT</span>
+                    <button class="close-terminal" onclick="document.getElementById('ipOutput').style.display='none'">✕</button>
+                </div>
+                <div id="ipTerminal" class="terminal-content"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Phone Lookup Section -->
+<section id="phone" class="service-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2><i class="fas fa-phone"></i> Phone Metadata Lookup</h2>
+            <p class="section-subtitle">Retrieve metadata and carrier information from phone numbers</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="phoneForm" class="search-form" data-service="phone">
+                <div class="form-group">
+                    <input type="text" id="phoneInput" name="phone_number" placeholder="Enter Phone Number (e.g., +14155552671)" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Analyze Phone
+                    </button>
+                </div>
+            </form>
+
+            <!-- Terminal Output -->
+            <div id="phoneOutput" class="terminal-output" style="display:none;">
+                <div class="terminal-header">
+                    <span>TERMINAL OUTPUT</span>
+                    <button class="close-terminal" onclick="document.getElementById('phoneOutput').style.display='none'">✕</button>
+                </div>
+                <div id="phoneTerminal" class="terminal-content"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Username OSINT Section -->
+<section id="username" class="service-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2><i class="fas fa-user-secret"></i> Username OSINT Scanner</h2>
+            <p class="section-subtitle">Search for usernames across multiple social media platforms</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="usernameForm" class="search-form" data-service="username">
+                <div class="form-group">
+                    <input type="text" id="usernameInput" name="username" placeholder="Enter Username to Scan" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Scan Platforms
+                    </button>
+                </div>
+            </form>
+
+            <!-- Username Results Output - Card Style -->
+            <div id="usernameOutput" class="results-output" style="display:none;">
+                <div class="results-header">
+                    <h3>Scan Results</h3>
+                </div>
+                <div id="usernameResults" class="results-grid"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features-section">
+    <h2>Why Choose CyberScope?</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Lightning Fast</h3>
+            <p>Get instant results with our optimized API integrations and real-time data processing</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3>Secure & Private</h3>
+            <p>Your queries are encrypted and we don't store any personal user data</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-database"></i>
+            </div>
+            <h3>Comprehensive Data</h3>
+            <p>Access multiple data sources for complete OSINT intelligence gathering</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Advanced Analytics</h3>
+            <p>Detailed insights and correlations from publicly available data sources</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h3>User-Friendly Interface</h3>
+            <p>Intuitive design makes it easy for both beginners and professionals</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Educational Purpose</h3>
+            <p>Perfect for learning cybersecurity, threat intelligence, and OSINT techniques</p>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2>About CyberScope</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>What is CyberScope?</h3>
+                <p>CyberScope is a comprehensive Open-Source Intelligence (OSINT) platform designed for cybersecurity professionals, researchers, and enthusiasts. Our platform aggregates publicly available information from multiple sources to provide actionable intelligence for security research.</p>
+                
+                <h3>Our Mission</h3>
+                <p>We're committed to democratizing access to OSINT tools while promoting responsible and ethical information gathering practices. CyberScope empowers security professionals to make informed decisions based on comprehensive public data analysis.</p>
+                
+                <h3>Key Capabilities</h3>
+                <ul class="capability-list">
+                    <li><strong>IP Geolocation:</strong> Pinpoint the geographic location and ISP details of internet addresses</li>
+                    <li><strong>Phone Intelligence:</strong> Identify carrier information and number classification</li>
+                    <li><strong>Social Media Verification:</strong> Verify username availability across major platforms</li>
+                    <li><strong>Real-time Processing:</strong> Get instant results from multiple data sources</li>
+                </ul>
+                
+                <h3>Disclaimer</h3>
+                <p><strong>For Educational Use Only:</strong> This tool is designed for legitimate cybersecurity research and education. Users are responsible for ensuring their usage complies with local laws and regulations. Unauthorized access to computer systems is illegal.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1M+</div>
+                    <div class="stat-label">Queries Processed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Data Sources</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">Have questions or suggestions? We'd love to hear from you</p>
+        </div>
+        <div class="contact-cards">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>support@cyberscope.io</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Location</h3>
+                <p>Cybersecurity Hub, Global</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Support</h3>
+                <p>24/7 Community Support Available</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<!-- JavaScript for Slideshow -->
+<script>
+let currentSlideIndex = 0;
+
+function changeSlide(n) {
+    showSlide(currentSlideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlide(currentSlideIndex = n);
+}
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    if (n >= slides.length) {
+        currentSlideIndex = 0;
+    }
+    if (n < 0) {
+        currentSlideIndex = slides.length - 1;
+    }
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    slides[currentSlideIndex].classList.add('active');
+    dots[currentSlideIndex].classList.add('active');
+}
+
+// Auto rotate slides every 5 seconds
+setInterval(() => {
+    changeSlide(1);
+}, 5000);
+
+// Initialize first slide
+document.addEventListener('DOMContentLoaded', function() {
+    showSlide(0);
+});
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            // Close mobile menu if open
+            document.getElementById('nav-toggle').checked = false;
+        }
+    });
+});
+
+// Add scroll animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.feature-card, .result-card, .platform-card, .about-text').forEach(el => {
+    observer.observe(el);
+});
+
+// Show loading overlay on form submission
+document.querySelectorAll('.search-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const service = this.dataset.service;
+        const formData = new FormData(this);
+        const endpoint = '/analyze-' + service;
+        
+        // Show loading overlay
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.add('active');
+        }
+        
+        // Special handling for Username service - use cards instead of terminal
+        if (service === 'username') {
+            const outputDiv = document.getElementById(service + 'Output');
+            const resultsDiv = document.getElementById(service + 'Results');
+            
+            if (outputDiv && resultsDiv) {
+                outputDiv.style.display = 'block';
+                resultsDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #00d4ff;">Scanning platforms...</div>';
+                
+                // Make AJAX request
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+                fetch(endpoint, { method: 'POST', body: formData, signal: controller.signal })
+                  .then(response => { clearTimeout(timeoutId); return response.json(); })
+                  .then(data => {
+                    if (overlay) {
+                        overlay.classList.remove('active');
+                    }
+                    
+                    if (data.error) {
+                        resultsDiv.innerHTML = `<div style="color: #ff4444; padding: 20px; text-align: center;">Error: ${data.error}</div>`;
+                    } else {
+                        // Create platform cards
+                        resultsDiv.innerHTML = '';
+                        
+                        const platformIcons = {
+                            'Instagram': 'fab fa-instagram',
+                            'GitHub': 'fab fa-github',
+                            'Twitter': 'fab fa-twitter',
+                            'Reddit': 'fab fa-reddit',
+                            'Facebook': 'fab fa-facebook',
+                            'LinkedIn': 'fab fa-linkedin',
+                            'TikTok': 'fab fa-tiktok',
+                            'YouTube': 'fab fa-youtube'
+                        };
+                        
+                        const platformUrls = {
+                            'Instagram': 'https://www.instagram.com/',
+                            'GitHub': 'https://github.com/',
+                            'Twitter': 'https://twitter.com/',
+                            'Reddit': 'https://www.reddit.com/user/',
+                            'Facebook': 'https://www.facebook.com/',
+                            'LinkedIn': 'https://www.linkedin.com/in/',
+                            'TikTok': 'https://www.tiktok.com/@',
+                            'YouTube': 'https://www.youtube.com/@'
+                        };
+                        
+                        const username = formData.get('username');
+                        
+                        for (const [platform, status] of Object.entries(data)) {
+                            const card = document.createElement('div');
+                            card.className = 'platform-card';
+                            
+                            const isFound = status === 'Found';
+                            const statusClass = isFound ? 'found' : (status === 'Not Found' ? 'notfound' : 'error');
+                            const icon = platformIcons[platform] || 'fas fa-link';
+                            
+                            let cardHTML = `
+                                <div class="platform-icon"><i class="${icon}"></i></div>
+                                <div class="platform-name">${platform}</div>
+                                <div class="status-badge ${statusClass}">${status}</div>
+                            `;
+                            
+                            if (isFound) {
+                                let profileUrl = (platformUrls[platform] || '#') + username;
+                                cardHTML += `<a href="${profileUrl}" target="_blank" class="visit-btn">Visit Profile</a>`;
+                            } else {
+                                cardHTML += `<button class="visit-btn" disabled>Not Found</button>`;
+                            }
+                            
+                            card.innerHTML = cardHTML;
+                            resultsDiv.appendChild(card);
+                        }
+                    }
+                  })
+                  .catch(err => {
+                    if (overlay) {
+                        overlay.classList.remove('active');
+                    }
+                    resultsDiv.innerHTML = `<div style="color: #ff4444; padding: 20px; text-align: center;">Error: ${err.message || 'Request failed'}</div>`;
+                  });
+            }
+        } else {
+            // For IP and Phone - use terminal output
+            const outputDiv = document.getElementById(service + 'Output');
+            const terminalDiv = document.getElementById(service + 'Terminal');
+            
+            if (outputDiv && terminalDiv) {
+                outputDiv.style.display = 'block';
+                terminalDiv.innerHTML = '';
+                
+                // Add scanning messages one by one
+                const hackingMessages = [
+                    '$ ESTABLISHING CONNECTION...',
+                    '$ QUERYING DATABASE...',
+                    '$ PARSING DATA STREAMS...',
+                    '$ CROSS-REFERENCING SOURCES...',
+                    '$ COMPILING RESULTS...'
+                ];
+                
+                let messageIndex = 0;
+                const messageInterval = setInterval(() => {
+                    if (messageIndex < hackingMessages.length) {
+                        const line = document.createElement('div');
+                        line.className = 'terminal-line';
+                        line.textContent = hackingMessages[messageIndex];
+                        line.style.color = '#00d4ff';
+                        terminalDiv.appendChild(line);
+                        
+                        // Scroll to bottom
+                        terminalDiv.scrollTop = terminalDiv.scrollHeight;
+                        messageIndex++;
+                    }
+                }, 600);
+                
+                // Make AJAX request
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+                fetch(endpoint, { method: 'POST', body: formData, signal: controller.signal })
+                  .then(response => { clearTimeout(timeoutId); return response.json(); })
+                  .then(data => {
+                    clearInterval(messageInterval);
+                    
+                    if (overlay) {
+                        overlay.classList.remove('active');
+                    }
+                    
+                    // Add blank line
+                    const blankLine = document.createElement('div');
+                    blankLine.className = 'terminal-line';
+                    blankLine.textContent = '';
+                    terminalDiv.appendChild(blankLine);
+                    
+                    if (data.error) {
+                        const errorLine = document.createElement('div');
+                        errorLine.className = 'terminal-line error';
+                        errorLine.textContent = '✗ ERROR: ' + data.error;
+                        terminalDiv.appendChild(errorLine);
+                        terminalDiv.scrollTop = terminalDiv.scrollHeight;
+                    } else {
+                        // Add result header
+                        const headerLine = document.createElement('div');
+                        headerLine.className = 'terminal-line header';
+                        headerLine.textContent = '========== SCAN RESULTS ==========';
+                        terminalDiv.appendChild(headerLine);
+                        terminalDiv.scrollTop = terminalDiv.scrollHeight;
+                        
+                        // Display each field one by one
+                        let fieldIndex = 0;
+                        const entries = Object.entries(data);
+                        const fieldInterval = setInterval(() => {
+                            if (fieldIndex < entries.length) {
+                                const [key, value] = entries[fieldIndex];
+                                const line = document.createElement('div');
+                                line.className = 'terminal-line';
+                                
+                                // Format key name
+                                const formattedKey = key.replace(/_/g, ' ')
+                                    .split(' ')
+                                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                    .join(' ');
+                                
+                                line.innerHTML = `<span class="field-name">${formattedKey}</span> : <span class="field-value">${value || 'N/A'}</span>`;
+                                terminalDiv.appendChild(line);
+                                terminalDiv.scrollTop = terminalDiv.scrollHeight;
+                                fieldIndex++;
+                            } else {
+                                clearInterval(fieldInterval);
+                                
+                                // Add footer
+                                const footerLine = document.createElement('div');
+                                footerLine.className = 'terminal-line header';
+                                footerLine.textContent = '=================================='; 
+                                terminalDiv.appendChild(footerLine);
+                                
+                                // Add completion message
+                                const completeLine = document.createElement('div');
+                                completeLine.className = 'terminal-line';
+                                completeLine.textContent = '✓ Analysis Complete';
+                                completeLine.style.color = '#00ff00';
+                                terminalDiv.appendChild(completeLine);
+                                terminalDiv.scrollTop = terminalDiv.scrollHeight;
+                            }
+                        }, 250);
+                    }
+                  })
+                  .catch(err => {
+                    clearInterval(messageInterval);
+                    
+                    if (overlay) {
+                        overlay.classList.remove('active');
+                    }
+                    
+                    const errorLine = document.createElement('div');
+                    errorLine.className = 'terminal-line error';
+                    errorLine.textContent = '✗ ERROR: ' + (err.message || 'Request failed');
+                    terminalDiv.appendChild(errorLine);
+                    terminalDiv.scrollTop = terminalDiv.scrollHeight;
+                  });
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>

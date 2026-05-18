@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="/#ip">IP Tracker</a>
+                    <a href="/#phone">Phone Lookup</a>
+                    <a href="/#username">Username Scanner</a>
+                </div>
+            </li>
+            <li><a href="/resources" class="nav-link">Resources</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="page-hero" style="margin-top: 70px;">
+    <div class="hero-content">
+        <h1>API Documentation</h1>
+        <p>Technical reference for integrating CyberScope into your applications</p>
+    </div>
+</section>
+
+<!-- API Content -->
+<section class="api-section">
+    <div class="api-container">
+        <div class="api-sidebar">
+            <h3>API Reference</h3>
+            <ul class="api-menu">
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#authentication">Authentication</a></li>
+                <li><a href="#ip-api">IP Lookup API</a></li>
+                <li><a href="#phone-api">Phone API</a></li>
+                <li><a href="#username-api">Username API</a></li>
+                <li><a href="#rate-limits">Rate Limits</a></li>
+                <li><a href="#error-codes">Error Codes</a></li>
+            </ul>
+        </div>
+
+        <div class="api-content">
+            <section id="getting-started" class="api-doc">
+                <h2>Getting Started</h2>
+                <p>The CyberScope API allows developers to programmatically access OSINT data. All endpoints return JSON responses.</p>
+                <h3>Base URL</h3>
+                <div class="code-block">https://api.cyberscope.io/v1</div>
+                <h3>Authentication</h3>
+                <p>All API requests require an API key passed in the Authorization header:</p>
+                <div class="code-block">Authorization: Bearer YOUR_API_KEY</div>
+            </section>
+
+            <section id="authentication" class="api-doc">
+                <h2>Authentication</h2>
+                <h3>Getting Your API Key</h3>
+                <ol class="code-list">
+                    <li>Log in to your CyberScope account</li>
+                    <li>Navigate to Settings → API Keys</li>
+                    <li>Click "Generate New Key"</li>
+                    <li>Copy your API key (store it securely)</li>
+                </ol>
+                <h3>API Key Usage</h3>
+                <div class="code-block">curl -H "Authorization: Bearer sk_test_abc123xyz" \<br>
+  https://api.cyberscope.io/v1/ip/lookup</div>
+            </section>
+
+            <section id="ip-api" class="api-doc">
+                <h2>IP Lookup API</h2>
+                <h3>Endpoint: POST /ip/lookup</h3>
+                <div class="code-block">POST /v1/ip/lookup<br>
+Content-Type: application/json<br>
+Authorization: Bearer YOUR_API_KEY<br>
+<br>
+{<br>
+&nbsp;&nbsp;"ip_address": "8.8.8.8"<br>
+}</div>
+                <h3>Response Example</h3>
+                <div class="code-block">{<br>
+&nbsp;&nbsp;"status": "success",<br>
+&nbsp;&nbsp;"data": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"ip": "8.8.8.8",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"country": "United States",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"city": "Mountain View",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"isp": "Google Cloud",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"latitude": 37.386,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"longitude": -122.084<br>
+&nbsp;&nbsp;}<br>
+}</div>
+                <h3>Query Parameters</h3>
+                <ul class="param-list">
+                    <li><strong>ip_address</strong> (required): Valid IPv4 or IPv6 address</li>
+                </ul>
+            </section>
+
+            <section id="phone-api" class="api-doc">
+                <h2>Phone Lookup API</h2>
+                <h3>Endpoint: POST /phone/lookup</h3>
+                <div class="code-block">POST /v1/phone/lookup<br>
+Content-Type: application/json<br>
+Authorization: Bearer YOUR_API_KEY<br>
+<br>
+{<br>
+&nbsp;&nbsp;"phone_number": "+14155552671"<br>
+}</div>
+                <h3>Response Example</h3>
+                <div class="code-block">{<br>
+&nbsp;&nbsp;"status": "success",<br>
+&nbsp;&nbsp;"data": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"phone": "+14155552671",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"country": "United States",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"country_code": "US",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"carrier": "Verizon",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"line_type": "Mobile"<br>
+&nbsp;&nbsp;}<br>
+}</div>
+                <h3>Query Parameters</h3>
+                <ul class="param-list">
+                    <li><strong>phone_number</strong> (required): E.164 format (+country code + number)</li>
+                </ul>
+            </section>
+
+            <section id="username-api" class="api-doc">
+                <h2>Username Lookup API</h2>
+                <h3>Endpoint: POST /username/search</h3>
+                <div class="code-block">POST /v1/username/search<br>
+Content-Type: application/json<br>
+Authorization: Bearer YOUR_API_KEY<br>
+<br>
+{<br>
+&nbsp;&nbsp;"username": "john_doe",<br>
+&nbsp;&nbsp;"platforms": ["instagram", "github", "twitter", "reddit"]<br>
+}</div>
+                <h3>Response Example</h3>
+                <div class="code-block">{<br>
+&nbsp;&nbsp;"status": "success",<br>
+&nbsp;&nbsp;"data": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"username": "john_doe",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"results": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"instagram": {"found": true, "url": "https://instagram.com/john_doe"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"github": {"found": true, "url": "https://github.com/john_doe"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"twitter": {"found": false},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"reddit": {"found": true, "url": "https://reddit.com/user/john_doe"}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+}</div>
+                <h3>Query Parameters</h3>
+                <ul class="param-list">
+                    <li><strong>username</strong> (required): Username to search for</li>
+                    <li><strong>platforms</strong> (optional): Array of platforms to search (defaults to all)</li>
+                </ul>
+            </section>
+
+            <section id="rate-limits" class="api-doc">
+                <h2>Rate Limits</h2>
+                <p>API rate limits are applied per API key:</p>
+                <ul class="param-list">
+                    <li><strong>Free Plan:</strong> 100 requests per day</li>
+                    <li><strong>Pro Plan:</strong> 10,000 requests per day</li>
+                    <li><strong>Enterprise:</strong> Custom limits</li>
+                </ul>
+                <p>Rate limit information is returned in response headers:</p>
+                <div class="code-block">X-RateLimit-Limit: 100<br>
+X-RateLimit-Remaining: 45<br>
+X-RateLimit-Reset: 1613692800</div>
+            </section>
+
+            <section id="error-codes" class="api-doc">
+                <h2>Error Codes</h2>
+                <div class="error-table">
+                    <div class="error-row">
+                        <span class="error-code">400</span>
+                        <span class="error-desc">Bad Request - Invalid parameters</span>
+                    </div>
+                    <div class="error-row">
+                        <span class="error-code">401</span>
+                        <span class="error-desc">Unauthorized - Invalid API key</span>
+                    </div>
+                    <div class="error-row">
+                        <span class="error-code">403</span>
+                        <span class="error-desc">Forbidden - Rate limit exceeded</span>
+                    </div>
+                    <div class="error-row">
+                        <span class="error-code">404</span>
+                        <span class="error-desc">Not Found - Resource not found</span>
+                    </div>
+                    <div class="error-row">
+                        <span class="error-code">500</span>
+                        <span class="error-desc">Server Error - Try again later</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.api-section {
+    padding: 60px 40px;
+    background: var(--darker-bg);
+}
+
+.api-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+}
+
+.api-sidebar {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.api-sidebar h3 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.api-menu {
+    list-style: none;
+}
+
+.api-menu li {
+    margin-bottom: 10px;
+}
+
+.api-menu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+    padding: 8px 10px;
+    border-left: 2px solid transparent;
+}
+
+.api-menu a:hover {
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+    padding-left: 15px;
+}
+
+.api-content {
+    color: var(--text-light);
+}
+
+.api-doc {
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.api-doc h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.api-doc h3 {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.api-doc p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.code-block {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--primary-color);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.code-list {
+    margin: 15px 0;
+    padding-left: 25px;
+    color: var(--text-muted);
+}
+
+.code-list li {
+    margin-bottom: 10px;
+}
+
+.param-list {
+    margin: 15px 0;
+    padding-left: 25px;
+    color: var(--text-muted);
+}
+
+.param-list li {
+    margin-bottom: 10px;
+}
+
+.param-list strong {
+    color: var(--text-light);
+}
+
+.error-table {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.error-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 107, 157, 0.02));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    padding: 12px 15px;
+    align-items: center;
+}
+
+.error-code {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-family: monospace;
+}
+
+.error-desc {
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .api-container {
+        grid-template-columns: 1fr;
+    }
+
+    .api-sidebar {
+        position: static;
+    }
+
+    .error-row {
+        grid-template-columns: 80px 1fr;
+    }
+}
+</style>
+
+</body>
+</html>

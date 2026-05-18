@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="/#ip">IP Tracker</a>
+                    <a href="/#phone">Phone Lookup</a>
+                    <a href="/#username">Username Scanner</a>
+                </div>
+            </li>
+            <li><a href="/resources" class="nav-link">Resources</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="page-hero" style="margin-top: 70px;">
+    <div class="hero-content">
+        <h1>Documentation</h1>
+        <p>Complete technical documentation and feature guides</p>
+    </div>
+</section>
+
+<!-- Documentation Content -->
+<section class="content-section">
+    <div class="doc-container">
+        <aside class="doc-sidebar">
+            <h3>Table of Contents</h3>
+            <ul class="toc">
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#ip-tracker">IP Tracker</a></li>
+                <li><a href="#phone-lookup">Phone Lookup</a></li>
+                <li><a href="#username-scanner">Username Scanner</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="doc-content">
+            <!-- Getting Started -->
+            <section id="getting-started" class="doc-section">
+                <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+                <div class="doc-text">
+                    <h3>What is CyberScope?</h3>
+                    <p>CyberScope is a comprehensive OSINT (Open Source Intelligence) platform designed to help security professionals gather and analyze publicly available information. Our platform provides easy-to-use tools for IP geolocation, phone number analysis, and username verification across social media platforms.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul class="doc-list">
+                        <li><strong>Real-time Data Processing:</strong> Get instant results from multiple data sources</li>
+                        <li><strong>Multiple Analysis Tools:</strong> IP tracking, phone lookup, and username scanning</li>
+                        <li><strong>User-Friendly Interface:</strong> Intuitive design suitable for beginners and experts</li>
+                        <li><strong>Data Security:</strong> Your queries are processed securely without storing personal data</li>
+                        <li><strong>Educational Focus:</strong> Perfect for learning OSINT methodologies</li>
+                    </ul>
+
+                    <h3>System Requirements</h3>
+                    <p>CyberScope works in any modern web browser including:</p>
+                    <ul class="doc-list">
+                        <li>Chrome/Chromium (latest versions)</li>
+                        <li>Firefox (latest versions)</li>
+                        <li>Safari (latest versions)</li>
+                        <li>Edge (latest versions)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- IP Tracker -->
+            <section id="ip-tracker" class="doc-section">
+                <h2><i class="fas fa-network-wired"></i> IP Tracker Documentation</h2>
+                <div class="doc-text">
+                    <h3>Overview</h3>
+                    <p>The IP Tracker tool analyzes public IP addresses and provides detailed geolocation and ISP information. This tool is useful for understanding the geographical location and infrastructure behind internet addresses.</p>
+
+                    <h3>How to Use</h3>
+                    <ol class="doc-list">
+                        <li>Navigate to the IP Tracker section on the home page</li>
+                        <li>Enter a valid public IP address (e.g., 8.8.8.8)</li>
+                        <li>Click "Analyze IP" button</li>
+                        <li>View detailed results including country, city, ISP, and coordinates</li>
+                    </ol>
+
+                    <h3>Data Returned</h3>
+                    <div class="code-block">
+Country: Geographic location of the IP<br>
+City: City where the IP is registered<br>
+ISP: Internet Service Provider information<br>
+Coordinates: Latitude and Longitude of the location
+                    </div>
+
+                    <h3>Accuracy Notes</h3>
+                    <p>IP geolocation data is typically accurate to the city level. Accuracy can vary depending on the IP address type (residential, datacenter, mobile) and the data source. VPNs and proxies may mask the true location.</p>
+
+                    <h3>API Data Sources</h3>
+                    <p>Our IP Tracker uses the ip-api.com service which aggregates data from multiple authoritative sources including:</p>
+                    <ul class="doc-list">
+                        <li>WHOIS databases</li>
+                        <li>Regional Internet Registries (RIRs)</li>
+                        <li>MaxMind GeoIP2</li>
+                        <li>Other public IP databases</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Phone Lookup -->
+            <section id="phone-lookup" class="doc-section">
+                <h2><i class="fas fa-phone"></i> Phone Lookup Documentation</h2>
+                <div class="doc-text">
+                    <h3>Overview</h3>
+                    <p>The Phone Lookup tool analyzes phone numbers to extract metadata including country information, carrier details, and line type classification. This is useful for verifying phone numbers and understanding their origin.</p>
+
+                    <h3>How to Use</h3>
+                    <ol class="doc-list">
+                        <li>Go to the Phone Lookup section</li>
+                        <li>Enter a phone number with country code (e.g., +14155552671)</li>
+                        <li>Click "Analyze Phone" button</li>
+                        <li>View carrier and location information</li>
+                    </ol>
+
+                    <h3>Supported Formats</h3>
+                    <p>Phone numbers should be in international E.164 format:</p>
+                    <div class="code-block">
++[country code][number]<br>
+Example: +1 415 555 2671 or +14155552671
+                    </div>
+
+                    <h3>Data Returned</h3>
+                    <ul class="doc-list">
+                        <li><strong>Country:</strong> Country where the number is registered</li>
+                        <li><strong>Carrier:</strong> Telecommunications provider</li>
+                        <li><strong>Line Type:</strong> Mobile, Landline, or VoIP</li>
+                    </ul>
+
+                    <h3>Limitations</h3>
+                    <ul class="doc-list">
+                        <li>Results are limited to publicly available carrier information</li>
+                        <li>Private or unlisted numbers may not return complete data</li>
+                        <li>Carrier information may take time to update after number transfers</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Username Scanner -->
+            <section id="username-scanner" class="doc-section">
+                <h2><i class="fas fa-user-secret"></i> Username Scanner Documentation</h2>
+                <div class="doc-text">
+                    <h3>Overview</h3>
+                    <p>The Username Scanner searches for a given username across multiple social media and web platforms, helping you verify digital identities and find online accounts.</p>
+
+                    <h3>Supported Platforms</h3>
+                    <p>CyberScope currently searches across these platforms:</p>
+                    <ul class="doc-list">
+                        <li>Instagram - Photo sharing and social networking</li>
+                        <li>GitHub - Code repository hosting</li>
+                        <li>Twitter/X - Microblogging and social media</li>
+                        <li>Reddit - Discussion and community platform</li>
+                    </ul>
+
+                    <h3>How to Use</h3>
+                    <ol class="doc-list">
+                        <li>Navigate to the Username Scanner section</li>
+                        <li>Enter a username to search for</li>
+                        <li>Click "Scan Platforms" button</li>
+                        <li>Review results showing which platforms have the username</li>
+                        <li>Click on "Found" status to visit the profile directly</li>
+                    </ol>
+
+                    <h3>Result Interpretation</h3>
+                    <p><strong>Found:</strong> The username exists on this platform and a direct link is provided</p>
+                    <p><strong>Not Found:</strong> The username does not exist on this platform or the account is private/deleted</p>
+
+                    <h3>Tips for Username Searching</h3>
+                    <ul class="doc-list">
+                        <li>Try variations if the exact username is not found</li>
+                        <li>Keep in mind usernames may differ across platforms</li>
+                        <li>Private/locked accounts may not appear in results</li>
+                        <li>Recently deleted accounts may take time to be delisted</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section id="faq" class="doc-section">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <h3>Is CyberScope free to use?</h3>
+                        <p>Yes, CyberScope is completely free for educational and research purposes. We don't charge for basic OSINT queries.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do you store my search history?</h3>
+                        <p>No, we do not store any personal data or search history. All queries are processed in real-time without permanent records.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What are my legal obligations?</h3>
+                        <p>Users must comply with all applicable laws. OSINT uses only publicly available information, but accessing or using that information may still have legal implications depending on jurisdiction and intent.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How accurate is the data?</h3>
+                        <p>Data accuracy depends on the source. IP geolocation is typically accurate to city level, phone data to carrier level, and username searches use current platform databases.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I use this for commercial purposes?</h3>
+                        <p>CyberScope is designed for educational and research use. Commercial use requires proper licensing and agreement with data providers.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What should I do if results are inaccurate?</h3>
+                        <p>Contact our support team with details about incorrect results. Data inaccuracies in source databases should be reported to the respective data providers.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.content-section {
+    padding: 60px 40px;
+    background: var(--darker-bg);
+}
+
+.doc-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+}
+
+.doc-sidebar {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.doc-sidebar h3 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.toc {
+    list-style: none;
+}
+
+.toc li {
+    margin-bottom: 12px;
+}
+
+.toc a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+    padding: 8px 0;
+    padding-left: 10px;
+    border-left: 2px solid transparent;
+}
+
+.toc a:hover {
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+.doc-content {
+    color: var(--text-light);
+}
+
+.doc-section {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.doc-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.doc-section h3 {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.doc-text p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.doc-list {
+    margin: 15px 0;
+    padding-left: 25px;
+    color: var(--text-muted);
+}
+
+.doc-list li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.code-block {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--primary-color);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.faq-items {
+    display: grid;
+    gap: 20px;
+}
+
+.faq-item {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+}
+
+.faq-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .doc-container {
+        grid-template-columns: 1fr;
+    }
+
+    .doc-sidebar {
+        position: static;
+    }
+
+    .doc-section h2 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+</body>
+</html>

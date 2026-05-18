@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="/#ip">IP Tracker</a>
+                    <a href="/#phone">Phone Lookup</a>
+                    <a href="/#username">Username Scanner</a>
+                </div>
+            </li>
+            <li><a href="/resources" class="nav-link">Resources</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="page-hero" style="margin-top: 70px;">
+    <div class="hero-content">
+        <h1>Legal Disclaimer</h1>
+        <p>Important Information About Using CyberScope</p>
+    </div>
+</section>
+
+<!-- Disclaimer Content -->
+<section class="disclaimer-section">
+    <div class="disclaimer-container">
+        <div class="disclaimer-alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <h3>Important Notice</h3>
+                <p>CyberScope is an educational and authorized security testing platform only. Users are entirely responsible for ensuring their use complies with all applicable laws and regulations in their jurisdiction.</p>
+            </div>
+        </div>
+
+        <div class="disclaimer-content">
+            <section class="disclaimer-block">
+                <h2>1. Educational Purpose</h2>
+                <p>CyberScope is designed, offered, and maintained for educational purposes and authorized security research only. This platform should only be used by:</p>
+                <ul class="disclaimer-list">
+                    <li>Cybersecurity students and professionals</li>
+                    <li>Authorized security researchers</li>
+                    <li>IT professionals conducting authorized penetration testing</li>
+                    <li>Law enforcement and security agencies with proper authorization</li>
+                    <li>Individuals authorized to test systems they own or manage</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>2. Legal Disclaimer on OSINT Activities</h2>
+                <p>While OSINT (Open Source Intelligence) gathering is legal, <strong>the collection and use of information obtained through this platform must comply with all applicable laws</strong>. CyberScope is not responsible for:</p>
+                <ul class="disclaimer-list">
+                    <li>Violations of federal, state, or local laws by users</li>
+                    <li>Misuse of information obtained through the platform</li>
+                    <li>Unauthorized access to systems or data by users</li>
+                    <li>Privacy violations resulting from user actions</li>
+                    <li>Any criminal or civil liability arising from user conduct</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>3. Data Accuracy Disclaimer</h2>
+                <p>CyberScope aggregates data from publicly available sources and third-party APIs. We do not warrant:</p>
+                <ul class="disclaimer-list">
+                    <li><strong>Accuracy:</strong> Information may be outdated, incorrect, or incomplete</li>
+                    <li><strong>Completeness:</strong> Data may be missing or partially available</li>
+                    <li><strong>Timeliness:</strong> Real-time updates are not guaranteed</li>
+                    <li><strong>Reliability:</strong> Third-party data sources may experience outages</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Users are solely responsible for verifying information through independent sources before relying on it.</strong></p>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>4. No Warranty of Security</h2>
+                <p>While we implement security measures, CyberScope does not guarantee:</p>
+                <ul class="disclaimer-list">
+                    <li>Absolute protection against unauthorized access</li>
+                    <li>Freedom from system vulnerabilities or exploits</li>
+                    <li>Uninterrupted service availability</li>
+                    <li>Prevention of data breaches or compromises</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Users should implement their own security measures and not rely solely on our platform's built-in protections.</strong></p>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>5. Third-Party Content & APIs</h2>
+                <p>CyberScope uses third-party data sources and APIs including:</p>
+                <ul class="disclaimer-list">
+                    <li>IP geolocation services (ip-api.com, MaxMind, etc.)</li>
+                    <li>Phone number databases and APIs</li>
+                    <li>Username verification services</li>
+                    <li>Social media platforms and public records</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>We are not responsible for the accuracy, availability, or compliance of third-party services.</strong> Continued use of these services may require acceptance of their own terms and conditions.</p>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>6. Unauthorized Access Warning</h2>
+                <p><strong style="color: var(--accent-color);">Unauthorized access to computer systems is a federal crime under the Computer Fraud and Abuse Act (CFAA) and equivalent laws in other jurisdictions.</strong></p>
+                <ul class="disclaimer-list">
+                    <li>CyberScope must only be used on systems you own or have written permission to test</li>
+                    <li>Always obtain explicit authorization before testing any systems</li>
+                    <li>Document authorization in writing for your protection</li>
+                    <li>Cease testing immediately if unauthorized access occurs</li>
+                    <li>Consult legal counsel before conducting security assessments</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>7. Privacy Violations Warning</h2>
+                <p>Using CyberScope to collect information on individuals without their knowledge or consent may violate:</p>
+                <ul class="disclaimer-list">
+                    <li>Privacy laws (GDPR, CCPA, etc.)</li>
+                    <li>Harassment and stalking statutes</li>
+                    <li>Wiretapping and electronic surveillance laws</li>
+                    <li>FCRA (Fair Credit Reporting Act) regulations</li>
+                    <li>Platform terms of service</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Users are responsible for ensuring their use respects individuals' privacy rights.</strong></p>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>8. Limitation of Liability</h2>
+                <p>CyberScope and its developers, owners, and affiliates are not liable for:</p>
+                <ul class="disclaimer-list">
+                    <li>Direct, indirect, or consequential damages</li>
+                    <li>Loss of data, revenue, or profits</li>
+                    <li>Business interruptions</li>
+                    <li>Claims from third parties</li>
+                    <li>Any damages arising from use of the platform</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>9. No Professional Advice</h2>
+                <p>CyberScope provides tools and information for educational purposes only. Using CyberScope does not constitute:</p>
+                <ul class="disclaimer-list">
+                    <li>Legal advice - consult an attorney for legal questions</li>
+                    <li>Medical advice - consult healthcare providers for health matters</li>
+                    <li>Professional security assessment - hire certified professionals</li>
+                    <li>Accounting or financial advice - consult financial professionals</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>10. Responsible Disclosure</h2>
+                <p>If you discover information about vulnerabilities, security issues, or unethical activities through CyberScope:</p>
+                <ul class="disclaimer-list">
+                    <li><strong>Report privately:</strong> Contact security@cyberscope.io before public disclosure</li>
+                    <li><strong>Respect disclosure timelines:</strong> Allow reasonable time for fixes (90 days typical)</li>
+                    <li><strong>Do not exploit:</strong> Only validate the vulnerability, do not escalate access</li>
+                    <li><strong>Document findings:</strong> Provide detailed technical information to assist remediation</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>11. Acceptable Use Compliance</h2>
+                <p>By using CyberScope, you confirm that your use:</p>
+                <ul class="disclaimer-list">
+                    <li>Complies with all applicable laws and regulations</li>
+                    <li>Does not violate anyone's rights or platform policies</li>
+                    <li>Does not involve hacking, cracking, or unauthorized access</li>
+                    <li>Does not harass, threaten, or endanger anyone</li>
+                    <li>Does not collect data for malicious purposes</li>
+                    <li>Is authorized by system owners or authorized personnel</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>12. Assumption of Risk</h2>
+                <p>By accessing and using CyberScope, you assume all risks associated with its use, including:</p>
+                <ul class="disclaimer-list">
+                    <li>Legal liability for misuse</li>
+                    <li>System performance issues or outages</li>
+                    <li>Inaccurate or mismatched data</li>
+                    <li>Third-party service disruptions</li>
+                    <li>Security vulnerabilities in the platform</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Use at your own risk. CyberScope is provided "as-is" without warranties.</strong></p>
+            </section>
+
+            <section class="disclaimer-block">
+                <h2>13. Acknowledgment</h2>
+                <p>By using CyberScope, you acknowledge that:</p>
+                <ul class="disclaimer-list">
+                    <li>You have read and understood this disclaimer</li>
+                    <li>You understand the legal implications of OSINT activities</li>
+                    <li>You assume full responsibility for your actions</li>
+                    <li>You will comply with all applicable laws</li>
+                    <li>CyberScope is not liable for your misuse or violations</li>
+                </ul>
+            </section>
+
+            <section class="disclaimer-block" style="border: 2px solid var(--accent-color); padding: 25px; border-radius: 10px; background: rgba(255, 107, 157, 0.05);">
+                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Contact & Support</h2>
+                <p>Questions about this disclaimer or concerns about proper usage?</p>
+                <ul class="disclaimer-list">
+                    <li><strong>Legal Questions:</strong> legal@cyberscope.io</li>
+                    <li><strong>Ethical Concerns:</strong> ethics@cyberscope.io</li>
+                    <li><strong>General Support:</strong> support@cyberscope.io</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(0, 212, 255, 0.1));
+    border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.disclaimer-section {
+    padding: 80px 40px;
+    background: var(--darker-bg);
+}
+
+.disclaimer-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.disclaimer-alert {
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    background: rgba(255, 107, 157, 0.1);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 8px;
+    margin-bottom: 50px;
+    animation: slideIn 0.6s ease-out;
+}
+
+.disclaimer-alert i {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.disclaimer-alert h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin: 0 0 10px 0;
+}
+
+.disclaimer-alert p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+.disclaimer-content {
+    color: var(--text-light);
+}
+
+.disclaimer-block {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.disclaimer-block h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.disclaimer-block p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.disclaimer-list {
+    margin: 15px 0;
+    padding-left: 25px;
+    color: var(--text-muted);
+}
+
+.disclaimer-list li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.disclaimer-list strong {
+    color: var(--text-light);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .disclaimer-section {
+        padding: 60px 20px;
+    }
+
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+
+    .disclaimer-alert {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .disclaimer-block h2 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+</body>
+</html>

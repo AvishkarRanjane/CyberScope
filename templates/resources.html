@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="/#ip">IP Tracker</a>
+                    <a href="/#phone">Phone Lookup</a>
+                    <a href="/#username">Username Scanner</a>
+                </div>
+            </li>
+            <li><a href="#resources" class="nav-link">Resources</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="page-hero" style="margin-top: 70px;">
+    <div class="hero-content">
+        <h1>Resources & Learning Center</h1>
+        <p>Comprehensive guides and materials to help you master OSINT techniques</p>
+    </div>
+</section>
+
+<!-- Resources Content -->
+<section class="content-section">
+    <div class="section-container">
+        <div class="resources-grid">
+            <!-- Learning Guides -->
+            <div class="resource-category">
+                <div class="category-header">
+                    <i class="fas fa-book"></i>
+                    <h2>Learning Guides</h2>
+                </div>
+                <div class="resource-items">
+                    <a href="/resources/osint-fundamentals" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>OSINT Fundamentals</h3>
+                        <p>Learn the basics of Open Source Intelligence gathering and methodology</p>
+                    </a>
+                    <a href="/resources/network-intelligence" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-network-wired"></i></div>
+                        <h3>Network Intelligence</h3>
+                        <p>Understand IP addresses, DNS, and network reconnaissance techniques</p>
+                    </a>
+                    <a href="/resources/social-media-osint" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-user-secret"></i></div>
+                        <h3>Social Media OSINT</h3>
+                        <p>Master social media analysis and username verification across platforms</p>
+                    </a>
+                    <a href="/resources/privacy-and-ethics" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-lock"></i></div>
+                        <h3>Privacy & Ethics</h3>
+                        <p>Essential guidelines for responsible and ethical OSINT practices</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tools & References -->
+            <div class="resource-category">
+                <div class="category-header">
+                    <i class="fas fa-tools"></i>
+                    <h2>Tools & References</h2>
+                </div>
+                <div class="resource-items">
+                    <a href="/resources/ip-databases" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-database"></i></div>
+                        <h3>IP Databases</h3>
+                        <p>Access our curated list of reliable IP geolocation and WHOIS databases</p>
+                    </a>
+                    <a href="/resources/public-data-sources" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-globe"></i></div>
+                        <h3>Public Data Sources</h3>
+                        <p>Comprehensive list of legitimate publicly available data sources</p>
+                    </a>
+                    <a href="/resources/api-reference" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-code"></i></div>
+                        <h3>API Reference</h3>
+                        <p>Integration guides and technical documentation for developers</p>
+                    </a>
+                    <a href="/resources/best-practices" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h3>Best Practices</h3>
+                        <p>Industry standards and recommended methodologies for OSINT research</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Research Papers -->
+            <div class="resource-category">
+                <div class="category-header">
+                    <i class="fas fa-newspaper"></i>
+                    <h2>Research & Papers</h2>
+                </div>
+                <div class="resource-items">
+                    <a href="/resources/academic-papers" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-scroll"></i></div>
+                        <h3>Academic Papers</h3>
+                        <p>Peer-reviewed research on OSINT methodologies and applications</p>
+                    </a>
+                    <a href="/resources/case-studies" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Case Studies</h3>
+                        <p>Real-world examples and analyses of successful OSINT investigations</p>
+                    </a>
+                    <a href="/resources/whitepapers" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
+                        <h3>Whitepapers</h3>
+                        <p>In-depth technical whitepapers on various OSINT topics</p>
+                    </a>
+                    <a href="/resources/industry-news" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-bullhorn"></i></div>
+                        <h3>Industry News</h3>
+                        <p>Latest updates on cybersecurity trends and OSINT advancements</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Community Resources -->
+            <div class="resource-category">
+                <div class="category-header">
+                    <i class="fas fa-users"></i>
+                    <h2>Community</h2>
+                </div>
+                <div class="resource-items">
+                    <a href="/resources/discussion-forums" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-comments"></i></div>
+                        <h3>Discussion Forums</h3>
+                        <p>Join our community forums to discuss OSINT techniques and share experiences</p>
+                    </a>
+                    <a href="/resources/webinars" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-video"></i></div>
+                        <h3>Webinars</h3>
+                        <p>Live training sessions and expert discussions on OSINT topics</p>
+                    </a>
+                    <a href="/resources/github-repositories" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-github"></i></div>
+                        <h3>GitHub Repositories</h3>
+                        <p>Open-source tools and scripts for OSINT automation</p>
+                    </a>
+                    <a href="/resources/certifications" class="resource-item">
+                        <div class="resource-icon"><i class="fas fa-certificate"></i></div>
+                        <h3>Certifications</h3>
+                        <p>Information about OSINT-related professional certifications</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Resources -->
+<section class="featured-section">
+    <div class="section-container">
+        <h2>Featured Resources This Month</h2>
+        <div class="featured-grid">
+                <div class="featured-card">
+                <div class="featured-badge">NEW</div>
+                <h3>Advanced IP Geolocation Techniques</h3>
+                <p>Discover advanced methods to extract maximum intelligence from IP addresses including accuracy evaluation and data validation.</p>
+                <a href="https://www.google.com/search?q=Advanced+IP+Geolocation+Techniques" class="read-more" target="_blank" rel="noopener">Read Guide <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="featured-card">
+                <div class="featured-badge">POPULAR</div>
+                <h3>Cross-Platform Username Investigation</h3>
+                <p>Learn how to efficiently search for usernames across multiple social platforms and verify digital identities.</p>
+                <a href="https://www.google.com/search?q=Cross-Platform+Username+Investigation" class="read-more" target="_blank" rel="noopener">Read Guide <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="featured-card">
+                <div class="featured-badge">TRENDING</div>
+                <h3>Ethical OSINT in Modern Cybersecurity</h3>
+                <p>Comprehensive guide on ethical considerations and legal boundaries in OSINT operations and research.</p>
+                <a href="https://www.google.com/search?q=Ethical+OSINT+in+Modern+Cybersecurity" class="read-more" target="_blank" rel="noopener">Read Guide <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.content-section {
+    padding: 80px 40px;
+    background: var(--darker-bg);
+}
+
+.resources-grid {
+    display: grid;
+    gap: 60px;
+}
+
+.resource-category {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.category-header i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.category-header h2 {
+    font-size: 2rem;
+    color: var(--text-light);
+}
+
+.resource-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.resource-item {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 30px;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: var(--transition);
+    display: block;
+}
+
+.resource-item:hover {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.resource-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.resource-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.resource-item p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.featured-section {
+    background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+    padding: 80px 40px;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.featured-section h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.featured-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 35px;
+    position: relative;
+    transition: var(--transition);
+}
+
+.featured-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.featured-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+.featured-card p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.read-more:hover {
+    gap: 12px;
+}
+</style>
+
+</body>
+</html>

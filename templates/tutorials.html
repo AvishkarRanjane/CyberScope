@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials - CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="/#ip">IP Tracker</a>
+                    <a href="/#phone">Phone Lookup</a>
+                    <a href="/#username">Username Scanner</a>
+                </div>
+            </li>
+            <li><a href="/resources" class="nav-link">Resources</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="page-hero" style="margin-top: 70px;">
+    <div class="hero-content">
+        <h1>Video Tutorials</h1>
+        <p>Step-by-step video guides to master CyberScope and OSINT techniques</p>
+    </div>
+</section>
+
+<!-- Tutorials Content -->
+<section class="tutorials-section">
+    <div class="tutorials-container">
+        <h2>Getting Started</h2>
+        <div class="tutorials-grid">
+            <div class="tutorial-card">
+                <div class="video-placeholder">
+                    <a href="/tutorials/introduction-to-cyberscope" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-1.png') }}" alt="Introduction to CyberScope" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Introduction to CyberScope</h3>
+                    <p>Learn the basics of CyberScope interface and navigate through all available features for beginners.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 5 minutes</span>
+                        <span><i class="fas fa-signal"></i> Beginner</span>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=Introduction+to+CyberScope" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(76, 175, 255, 0.2), rgba(76, 175, 255, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Account+Setup+and+Configuration+CyberScope" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-2.png') }}" alt="Account Setup" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Account Setup and Configuration</h3>
+                    <p>Complete guide to setting up your CyberScope account and configuring preferences.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 8 minutes</span>
+                        <span><i class="fas fa-signal"></i> Beginner</span>
+                    </div>
+                    <a href="/tutorials/account-setup-and-configuration" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(156, 39, 176, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Understanding+OSINT+Basics" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-3.png') }}" alt="Understanding OSINT Basics" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Understanding OSINT Basics</h3>
+                    <p>Fundamental concepts of Open-Source Intelligence gathering and ethical considerations.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 12 minutes</span>
+                        <span><i class="fas fa-signal"></i> Beginner</span>
+                    </div>
+                    <a href="/tutorials/understanding-osint-basics" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 60px;">IP Intelligence Tutorials</h2>
+        <div class="tutorials-grid">
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(76, 175, 255, 0.2), rgba(76, 175, 255, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=IP+Geolocation+Lookup+Tutorial" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-4.png') }}" alt="IP Geolocation Lookup" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>IP Geolocation Lookup Tutorial</h3>
+                    <p>Learn how to perform IP geolocation lookups and interpret the results accurately.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 7 minutes</span>
+                        <span><i class="fas fa-signal"></i> Beginner</span>
+                    </div>
+                    <a href="/tutorials/ip-geolocation-lookup" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.2), rgba(46, 204, 113, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Advanced+IP+Analysis+Techniques" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-5.png') }}" alt="Advanced IP Analysis" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Advanced IP Analysis Techniques</h3>
+                    <p>Deep dive into advanced IP analysis, understanding ISP data and network intelligence.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 15 minutes</span>
+                        <span><i class="fas fa-signal"></i> Intermediate</span>
+                    </div>
+                    <a href="/tutorials/advanced-ip-analysis" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.2), rgba(233, 30, 99, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Bulk+IP+Analysis+and+Automation" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-6.png') }}" alt="Bulk IP Analysis" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Bulk IP Analysis and Automation</h3>
+                    <p>Techniques for processing multiple IP addresses and automating IP intelligence collection.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 18 minutes</span>
+                        <span><i class="fas fa-signal"></i> Advanced</span>
+                    </div>
+                    <a href="/tutorials/bulk-ip-analysis" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 60px;">Phone Intelligence Tutorials</h2>
+        <div class="tutorials-grid">
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 193, 7, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Phone+Number+Lookup+Guide" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-6.1.png') }}" alt="Phone Number Lookup" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Phone Number Lookup Guide</h3>
+                    <p>How to perform phone number lookups and understand carrier and location data.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 6 minutes</span>
+                        <span><i class="fas fa-signal"></i> Beginner</span>
+                    </div>
+                    <a href="/tutorials/phone-number-lookup" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(103, 58, 183, 0.2), rgba(103, 58, 183, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Phone+Number+Verification+Techniques" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-7.png') }}" alt="Phone Verification" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Phone Number Verification Techniques</h3>
+                    <p>Advanced methods for verifying phone numbers and detecting spoofed or VoIP numbers.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 10 minutes</span>
+                        <span><i class="fas fa-signal"></i> Intermediate</span>
+                    </div>
+                    <a href="/tutorials/phone-number-verification" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Telecommunications+OSINT+Deep+Dive" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-8.png') }}" alt="Telecommunications OSINT" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Telecommunications OSINT Deep Dive</h3>
+                    <p>Understanding telecom infrastructure and advanced phone-based intelligence gathering.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 20 minutes</span>
+                        <span><i class="fas fa-signal"></i> Advanced</span>
+                    </div>
+                    <a href="/tutorials/telecommunications-osint" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 60px;">Social Media & Username Tutorials</h2>
+        <div class="tutorials-grid">
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(0, 150, 136, 0.2), rgba(0, 150, 136, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Username+Scanner+Basic+Usage" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-9.png') }}" alt="Username Scanner" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Username Scanner Basic Usage</h3>
+                    <p>Learn how to scan usernames across social media platforms efficiently.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 5 minutes</span>
+                        <span><i class="fas fa-signal"></i> Beginner</span>
+                    </div>
+                    <a href="/tutorials/username-scanner-basics" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(255, 87, 34, 0.2), rgba(255, 87, 34, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Account+Linking+and+Connection+Analysis" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-10.png') }}" alt="Account Linking" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Account Linking and Connection Analysis</h3>
+                    <p>Techniques for linking accounts and performing social network analysis.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 12 minutes</span>
+                        <span><i class="fas fa-signal"></i> Intermediate</span>
+                    </div>
+                    <a href="/tutorials/account-linking-analysis" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <div class="video-placeholder" style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(33, 150, 243, 0.1));">
+                    <a href="https://www.youtube.com/results?search_query=Social+Media+Profile+Analysis" target="_blank" rel="noopener">
+                        <img src="{{ url_for('static', filename='images/tutorials-11.png') }}" alt="Social Media Profile Analysis" class="tutorial-thumb" style="width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.05);">
+                    </a>
+                </div>
+                <div class="tutorial-info">
+                    <h3>Social Media Profile Analysis</h3>
+                    <p>Comprehensive guide to analyzing social media profiles and extracting intelligence.</p>
+                    <div class="tutorial-meta">
+                        <span><i class="fas fa-clock"></i> 16 minutes</span>
+                        <span><i class="fas fa-signal"></i> Intermediate</span>
+                    </div>
+                    <a href="/tutorials/social-media-profile-analysis" class="btn btn-primary" style="display: inline-flex;" target="_blank" rel="noopener">Watch Video</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.tutorials-section {
+    padding: 80px 40px;
+    background: var(--darker-bg);
+}
+
+.tutorials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tutorials-container h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.tutorial-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorial-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+}
+
+.video-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--primary-color);
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.video-placeholder::before {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 3px solid rgba(0, 212, 255, 0.3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+.tutorial-card:hover .video-placeholder {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(255, 107, 157, 0.15));
+}
+
+.tutorial-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tutorial-info h3 {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.tutorial-info p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    flex-grow: 1;
+}
+
+.tutorial-meta {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.tutorial-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn {
+    align-self: flex-start;
+}
+</style>
+
+</body>
+</html>

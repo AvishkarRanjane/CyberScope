@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ meta.title }} - CyberScope</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar"> <!-- simplified nav -->
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-shield-alt"></i><span>CyberScope</span></div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/resources">Resources</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-hero" style="padding:40px;">
+        <div class="tutorial-detail" style="max-width:900px;margin:0 auto;background:#1b2430;padding:24px;border-radius:8px;">
+            <img src="{{ url_for('static', filename=meta.image) }}" alt="{{ meta.title }}" style="width:100%;height:auto;border-radius:6px;margin-bottom:16px;">
+            <h1 style="color:var(--text-light)">{{ meta.title }}</h1>
+            <p style="color:var(--text-muted)">{{ meta.description }}</p>
+            <section style="margin-top:20px;color:var(--text-light)">
+                <h3>Video</h3>
+                <p>Watch the official video on YouTube for hands-on demonstrations.</p>
+                <a href="https://www.youtube.com/results?search_query={{ meta.title | replace(' ','+') }}" target="_blank" rel="noopener" class="btn btn-primary">Open on YouTube</a>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - CyberScope OSINT Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberScope</span>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#services" class="nav-link">Services</a>
+                <div class="dropdown-content">
+                    <a href="/#ip">IP Tracker</a>
+                    <a href="/#phone">Phone Lookup</a>
+                    <a href="/#username">Username Scanner</a>
+                </div>
+            </li>
+            <li><a href="/resources" class="nav-link">Resources</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="page-hero" style="margin-top: 70px;">
+    <div class="hero-content">
+        <h1>CyberScope Blog</h1>
+        <p>Latest insights, tutorials, and updates on OSINT and cybersecurity</p>
+    </div>
+</section>
+
+<!-- Blog Content -->
+<section class="blog-section">
+    <div class="blog-container">
+        <!-- Featured Post -->
+        <article class="featured-post">
+            <div class="post-image" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 107, 157, 0.1));"></div>
+            <div class="post-content">
+                <div class="post-meta">
+                    <span class="post-date"><i class="fas fa-calendar"></i> February 19, 2026</span>
+                    <span class="post-category"><i class="fas fa-tag"></i> OSINT Techniques</span>
+                </div>
+                <h2>The Complete Guide to IP Geolocation in OSINT</h2>
+                <p>IP geolocation is one of the most fundamental OSINT techniques. In this comprehensive guide, we explore how to accurately locate internet addresses, understand the limitations of geolocation data, and apply these skills for security research and threat intelligence gathering.</p>
+                <a href="/blog/ip-geolocation-guide" class="read-blog">Read Full Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.05));"></div>
+                <div class="blog-meta">
+                    <span class="blog-date">Feb 16, 2026</span>
+                    <span class="blog-category">Cybersecurity</span>
+                </div>
+                <h3>Advanced Username Investigations: Tips & Tricks</h3>
+                <p>Learn professional techniques for conducting thorough username investigations across multiple platforms. We cover username enumeration, account linking, and profile analysis methods.</p>
+                <div class="blog-footer">
+                    <a href="/blog/advanced-username-investigations" class="blog-link">Read More</a>
+                    <span class="read-time">5 min read</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), rgba(46, 204, 113, 0.05));"></div>
+                <div class="blog-meta">
+                    <span class="blog-date">Feb 13, 2026</span>
+                    <span class="blog-category">Privacy</span>
+                </div>
+                <h3>Protecting Your Digital Footprint Online</h3>
+                <p>Understanding how much information about you exists online is crucial. Discover the publicly available data about you and learn strategies to minimize your digital footprint and protect your privacy.</p>
+                <div class="blog-footer">
+                    <a href="/blog/protecting-digital-footprint" class="blog-link">Read More</a>
+                    <span class="read-time">7 min read</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image" style="background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(255, 107, 157, 0.05));"></div>
+                <div class="blog-meta">
+                    <span class="blog-date">Feb 10, 2026</span>
+                    <span class="blog-category">Tools</span>
+                </div>
+                <h3>Essential OSINT Tools Every Security Professional Needs</h3>
+                <p>A curated collection of the best OSINT tools for 2026. We review and compare popular tools including both free and premium options for various investigation tasks.</p>
+                <div class="blog-footer">
+                    <a href="/blog/essential-osint-tools" class="blog-link">Read More</a>
+                    <span class="read-time">10 min read</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.05));"></div>
+                <div class="blog-meta">
+                    <span class="blog-date">Feb 7, 2026</span>
+                    <span class="blog-category">Legal</span>
+                </div>
+                <h3>OSINT Laws and Ethics: What You Need to Know</h3>
+                <p>Understand the legal and ethical implications of OSINT work. Learn about jurisdiction-specific laws, terms of service violations, and best practices for responsible intelligence gathering.</p>
+                <div class="blog-footer">
+                    <a href="/blog/osint-laws-ethics" class="blog-link">Read More</a>
+                    <span class="read-time">8 min read</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image" style="background: linear-gradient(135deg, rgba(76, 175, 255, 0.15), rgba(76, 175, 255, 0.05));"></div>
+                <div class="blog-meta">
+                    <span class="blog-date">Feb 4, 2026</span>
+                    <span class="blog-category">Research</span>
+                </div>
+                <h3>Phone Number Intelligence: Database Insights</h3>
+                <p>Explore how phone number databases work, what information they contain, and how to interpret phone metadata. A deep dive into telecommunications OSINT.</p>
+                <div class="blog-footer">
+                    <a href="/blog/phone-number-intelligence" class="blog-link">Read More</a>
+                    <span class="read-time">6 min read</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image" style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.15), rgba(156, 39, 176, 0.05));"></div>
+                <div class="blog-meta">
+                    <span class="blog-date">Feb 1, 2026</span>
+                    <span class="blog-category">Tutorial</span>
+                </div>
+                <h3>Building Your Own OSINT Framework</h3>
+                <p>Step-by-step guide to creating a personal OSINT framework. Learn how to organize tools, workflows, and data management for efficient research operations.</p>
+                <div class="blog-footer">
+                    <a href="/blog/building-osint-framework" class="blog-link">Read More</a>
+                    <span class="read-time">12 min read</span>
+                </div>
+            </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="https://www.google.com/search?q=CyberScope+Blog+page+previous" class="prev-page disabled" target="_blank" rel="noopener"><i class="fas fa-chevron-left"></i> Previous</a>
+            <span class="page-info">Page 1 of 5</span>
+            <a href="https://www.google.com/search?q=CyberScope+Blog+page+2" class="next-page" target="_blank" rel="noopener">Next <i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="blog-sidebar">
+        <!-- Search -->
+        <div class="sidebar-widget">
+            <h3>Search Blog</h3>
+            <input type="text" placeholder="Search posts...">
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget">
+            <h3>Categories</h3>
+            <ul class="category-list">
+                <li><a href="https://www.google.com/search?q=OSINT+Techniques" target="_blank" rel="noopener">OSINT Techniques (24)</a></li>
+                <li><a href="https://www.google.com/search?q=Cybersecurity" target="_blank" rel="noopener">Cybersecurity (18)</a></li>
+                <li><a href="https://www.google.com/search?q=Privacy" target="_blank" rel="noopener">Privacy (12)</a></li>
+                <li><a href="https://www.google.com/search?q=Tools+Review" target="_blank" rel="noopener">Tools Review (15)</a></li>
+                <li><a href="https://www.google.com/search?q=Legal+and+Ethics+OSINT" target="_blank" rel="noopener">Legal & Ethics (8)</a></li>
+                <li><a href="https://www.google.com/search?q=Tutorials+OSINT" target="_blank" rel="noopener">Tutorials (20)</a></li>
+            </ul>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="sidebar-widget">
+            <h3>Recent Posts</h3>
+            <ul class="recent-list">
+                <li><a href="https://www.google.com/search?q=The+Complete+Guide+to+IP+Geolocation+in+OSINT" target="_blank" rel="noopener">The Complete Guide to IP Geolocation in OSINT</a></li>
+                <li><a href="https://www.google.com/search?q=Advanced+Username+Investigations+Tips+%26+Tricks" target="_blank" rel="noopener">Advanced Username Investigations: Tips & Tricks</a></li>
+                <li><a href="https://www.google.com/search?q=Protecting+Your+Digital+Footprint+Online" target="_blank" rel="noopener">Protecting Your Digital Footprint Online</a></li>
+                <li><a href="https://www.google.com/search?q=Essential+OSINT+Tools+Every+Security+Professional+Needs" target="_blank" rel="noopener">Essential OSINT Tools Every Security Professional Needs</a></li>
+            </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="sidebar-widget newsletter">
+            <h3>Subscribe to Updates</h3>
+            <p>Get the latest OSINT tips and cybersecurity insights delivered to your inbox.</p>
+            <form>
+                <input type="email" placeholder="Your email">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </aside>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>CyberScope</h4>
+            <p>Advanced OSINT Intelligence Platform for cybersecurity professionals</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/documentation">Documentation</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/api-docs">API Docs</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">Tools</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/disclaimer">Disclaimer</a></li>
+                <li><a href="/contact">Report Issues</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 CyberScope. All rights reserved. | For Educational Use Only</p>
+    </div>
+</footer>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 157, 0.1));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.blog-section {
+    padding: 80px 40px;
+    background: var(--darker-bg);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.featured-post {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.featured-post:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.post-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+.post-content {
+    padding: 40px;
+}
+
+.post-meta {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.post-date, .post-category {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.featured-post h2 {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.post-content p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.read-blog {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.read-blog:hover {
+    gap: 12px;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.blog-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.blog-image {
+    height: 200px;
+}
+
+.blog-meta {
+    padding: 20px 20px 0;
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.blog-date, .blog-category {
+    display: flex;
+    align-items: center;
+}
+
+.blog-card h3 {
+    padding: 0 20px 15px;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.blog-card p {
+    padding: 0 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex-grow: 1;
+}
+
+.blog-footer {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blog-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.read-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 12px;
+}
+
+.prev-page, .next-page {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.prev-page:hover, .next-page:hover {
+    border-color: var(--primary-color);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.prev-page.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-info {
+    color: var(--text-muted);
+}
+
+.blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.sidebar-widget {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.sidebar-widget h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.sidebar-widget input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.sidebar-widget input::placeholder {
+    color: var(--text-muted);
+}
+
+.category-list, .recent-list {
+    list-style: none;
+}
+
+.category-list li, .recent-list li {
+    margin-bottom: 10px;
+}
+
+.category-list a, .recent-list a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.category-list a:hover, .recent-list a:hover {
+    color: var(--primary-color);
+}
+
+.newsletter {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.newsletter h3 {
+    color: var(--dark-bg);
+}
+
+.newsletter p {
+    color: rgba(10, 14, 39, 0.8);
+}
+
+.newsletter input {
+    background: rgba(10, 14, 39, 0.3);
+    border-color: rgba(10, 14, 39, 0.3);
+    color: var(--dark-bg);
+}
+
+.newsletter input::placeholder {
+    color: rgba(10, 14, 39, 0.5);
+}
+
+@media (max-width: 1024px) {
+    .blog-section {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-post h2 {
+        font-size: 1.5rem;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+</style>
+
+</body>
+</html>
