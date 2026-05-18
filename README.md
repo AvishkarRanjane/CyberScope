@@ -73,7 +73,3 @@ By default, the app runs on `http://127.0.0.1:5000`.
 
 - The phone analysis endpoint prefers the `phonenumbers` library. If not installed, it uses the external API configured by `PHONE_API_KEY`.
 - The app currently runs with `debug=True` for development. Change this for production.
-
-## License
-
-Add your preferred license here.
