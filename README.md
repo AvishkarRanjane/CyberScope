@@ -1,75 +1,124 @@
-# CyberScope
+# 🛡️ CyberScope - Automated OSINT Intelligence Platform
 
-CyberScope is a Flask-based OSINT-style website for cybersecurity research, analysis, and documentation. It includes interactive IP, phone number, and username analysis endpoints plus resource, blog, tutorial, and documentation pages.
+[![Live Demo](https://img.shields.io/badge/Live_Demo-cyberscope.vercel.app-00f2fe?style=for-the-badge&logo=vercel&logoColor=000)](https://cyberscope.vercel.app)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel)](https://cyberscope.vercel.app)
+[![Python Version](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Framework](https://img.shields.io/badge/Framework-Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 
-## Features
+An open-source, Flask-based **Open Source Intelligence (OSINT)** platform providing automated investigative capabilities for IP geolocation, telecommunications metadata, and multi-platform username presence analysis.
 
-- IP address analysis via `ip-api.com`
-- Phone number metadata lookup using `phonenumbers` or fallback API support via `PHONE_API_KEY`
-- Username availability checks across popular social platforms
-- Static website pages for resources, tutorials, blog posts, documentation, and legal pages
-- Template-driven Flask app with HTML templates in `templates/`
+---
 
-## Project Structure
+## 🚀 Key Features & Modules
 
-- `app.py` - Flask application entrypoint
-- `requirements.txt` - Python dependencies
-- `templates/` - HTML templates for pages and detail views
-- `static/` - CSS and image assets
+- 🌐 **IP Geolocation & Threat Reconnaissance:** Instant lookup of IP addresses, ISP/organization metadata, timezone, country, and precise latitude/longitude coordinates via `/api/ip`.
+- 📱 **Telecommunications Intelligence:** Phone number parsing, carrier verification, format validation (E.164/National), and country origin detection via `/api/phone`.
+- 🔍 **Multi-Platform Username Scanner:** Automated cross-platform username presence checking across major social and technical networks (GitHub, Twitter, Reddit, LinkedIn, TikTok, YouTube) via `/api/username`.
+- 📚 **OSINT Knowledge Base & Tutorials:** In-depth tutorials and resource guides covering privacy, threat intelligence, and digital footprint analysis.
+- 🎨 **Dark Cyberpunk UI:** Modern glassmorphism design with terminal loading overlays and interactive data visualization.
 
-## Requirements
+---
 
-- Python 3.9+ (recommended)
-- Flask
-- requests
-- python-dotenv
-- phonenumbers (optional)
+## 📡 REST API Reference
 
-## Setup
+### 1. IP Geolocation Lookup
+* **Endpoint:** `POST /api/ip`
+* **Payload:** `{"ip": "8.8.8.8"}`
+* **Response Example:**
+  ```json
+  {
+    "query": "8.8.8.8",
+    "status": "success",
+    "country": "United States",
+    "city": "Ashburn",
+    "isp": "Google LLC",
+    "lat": 39.03,
+    "lon": -77.5
+  }
+  ```
 
-1. Clone the repository:
+### 2. Phone Number Intelligence
+* **Endpoint:** `POST /api/phone`
+* **Payload:** `{"phone": "+14155552671"}`
+* **Response Example:**
+  ```json
+  {
+    "valid": true,
+    "number": "+14155552671",
+    "country_code": 1,
+    "location": "California",
+    "carrier": "Fixed-line or mobile"
+  }
+  ```
 
-```bash
-git clone https://github.com/<your-username>/CyberScope.git
-cd CyberScope
-```
+### 3. Username Presence Scanner
+* **Endpoint:** `POST /api/username`
+* **Payload:** `{"username": "octocat"}`
+* **Response Example:**
+  ```json
+  {
+    "GitHub": "Found",
+    "Twitter": "Found",
+    "Reddit": "Found",
+    "LinkedIn": "Found"
+  }
+  ```
 
-2. Create and activate a virtual environment:
+---
 
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-3. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-4. (Optional) Create a `.env` file to add a phone validation API key:
+## 📁 Repository Structure
 
 ```text
-PHONE_API_KEY=your_api_layer_access_key
+CyberScope/
+├── app.py                      # Flask Application Server & API Routes
+├── vercel.json                 # Vercel Python Serverless Deployment Config
+├── requirements.txt            # Python Dependencies (Flask, requests, phonenumbers)
+├── static/
+│   ├── style.css               # Dark Neon Cyberpunk UI Styles
+│   └── images/                 # SVG & PNG Diagrams and Illustrations
+└── templates/
+    ├── index.html              # Main OSINT Dashboard & Interactive Tools
+    ├── tutorials.html          # OSINT Tutorial Library
+    ├── tutorial_detail.html    # Detailed Tutorial Reader
+    ├── resources.html          # Intelligence Resource Hub
+    ├── documentation.html      # Platform Documentation
+    └── 404.html                # Branded Target Not Found Page
 ```
 
-## Run
+---
 
-Start the Flask app:
+## 🛠️ Local Installation & Setup
 
-```bash
-python app.py
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/AvishkarRanjane/CyberScope.git
+   cd CyberScope
+   ```
 
-By default, the app runs on `http://127.0.0.1:5000`.
+2. **Set up virtual environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-## Usage
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- Visit `/` for the homepage
-- Use `/resources`, `/blog`, `/tutorials`, `/documentation` for content pages
-- Submit forms to `/analyze-ip`, `/analyze-phone`, and `/analyze-username` for JSON analysis results
+4. **Run local server:**
+   ```bash
+   python app.py
+   ```
+   Access the dashboard at `http://127.0.0.1:5000`.
 
-## Notes
+---
 
-- The phone analysis endpoint prefers the `phonenumbers` library. If not installed, it uses the external API configured by `PHONE_API_KEY`.
-- The app currently runs with `debug=True` for development. Change this for production.
+## 🌐 Live Deployment
+
+Access the live platform on Vercel:
+👉 **[https://cyberscope.vercel.app](https://cyberscope.vercel.app)**
+
+---
+
+*Open Source Intelligence & Security Reconnaissance Platform.*

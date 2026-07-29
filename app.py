@@ -209,62 +209,62 @@ tutorial_meta = {
     'introduction-to-cyberscope': {
         'title': 'Introduction to CyberScope',
         'description': 'Overview of the CyberScope interface and main features.',
-        'image': 'images/tutorials-1.svg'
+        'image': 'images/tutorials-1.png'
     },
     'account-setup-and-configuration': {
         'title': 'Account Setup and Configuration',
         'description': 'How to set up and configure your CyberScope account.',
-        'image': 'images/tutorials-2.svg'
+        'image': 'images/tutorials-2.png'
     },
     'understanding-osint-basics': {
         'title': 'Understanding OSINT Basics',
         'description': 'Fundamental concepts and ethical considerations of OSINT.',
-        'image': 'images/tutorials-3.svg'
+        'image': 'images/tutorials-3.png'
     },
     'ip-geolocation-lookup': {
         'title': 'IP Geolocation Lookup',
         'description': 'How to perform IP geolocation lookups and interpret results.',
-        'image': 'images/tutorials-4.svg'
+        'image': 'images/tutorials-4.png'
     },
     'advanced-ip-analysis': {
         'title': 'Advanced IP Analysis',
         'description': 'Deep dive into advanced IP analysis techniques.',
-        'image': 'images/tutorials-5.svg'
+        'image': 'images/tutorials-5.png'
     },
     'bulk-ip-analysis': {
         'title': 'Bulk IP Analysis and Automation',
         'description': 'Methods for processing and automating IP intelligence collection.',
-        'image': 'images/tutorials-6.svg'
+        'image': 'images/tutorials-6.png'
     },
     'phone-number-lookup': {
         'title': 'Phone Number Lookup Guide',
         'description': 'Lookup phone number carrier and location metadata.',
-        'image': 'images/tutorials-6.svg'
+        'image': 'images/tutorials-6.1.png'
     },
     'phone-number-verification': {
         'title': 'Phone Number Verification Techniques',
         'description': 'Techniques to verify and validate phone numbers.',
-        'image': 'images/tutorials-7.svg'
+        'image': 'images/tutorials-7.png'
     },
     'telecommunications-osint': {
         'title': 'Telecommunications OSINT Deep Dive',
         'description': 'Understanding telecom infrastructure for OSINT research.',
-        'image': 'images/tutorials-8.svg'
+        'image': 'images/tutorials-8.png'
     },
     'username-scanner-basics': {
         'title': 'Username Scanner Basic Usage',
         'description': 'How to scan usernames across platforms efficiently.',
-        'image': 'images/tutorials-9.svg'
+        'image': 'images/tutorials-9.png'
     },
     'account-linking-analysis': {
         'title': 'Account Linking and Connection Analysis',
         'description': 'Methods for linking accounts and network analysis.',
-        'image': 'images/tutorials-10.svg'
+        'image': 'images/tutorials-10.png'
     },
     'social-media-profile-analysis': {
         'title': 'Social Media Profile Analysis',
         'description': 'Analyzing social profiles to extract OSINT.',
-        'image': 'images/tutorials-11.svg'
+        'image': 'images/tutorials-11.png'
     }
 }
 
@@ -295,6 +295,10 @@ def terms():
 @app.route("/disclaimer")
 def disclaimer():
     return render_template("disclaimer.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 
 
 if __name__ == "__main__":

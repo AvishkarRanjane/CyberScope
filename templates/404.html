@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Target Not Found | CyberScope</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .error-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            color: #fff;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            line-height: 1;
+        }
+        .error-title {
+            font-size: 2rem;
+            margin: 20px 0 10px;
+            color: #e0e6ed;
+        }
+        .error-desc {
+            max-width: 500px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #0b1120;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.3);
+        }
+    </style>
+</head>
+<body style="background-color: #0b1120;">
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="text-decoration: none;">
+                <i class="fas fa-shield-alt"></i>
+                <span>CyberScope</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/tutorials" class="nav-link">Tutorials</a></li>
+                <li><a href="/resources" class="nav-link">Resources</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="error-container">
+        <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: #00f2fe; margin-bottom: 20px;"></i>
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Target Not Found</h2>
+        <p class="error-desc">The OSINT intelligence module or requested path could not be located in our database records.</p>
+        <a href="/" class="btn-home">
+            <i class="fas fa-arrow-left"></i> Return to Control Center
+        </a>
+    </div>
+</body>
+</html>
