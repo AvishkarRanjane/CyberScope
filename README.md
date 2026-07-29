@@ -1,7 +1,7 @@
 # 🛡️ CyberScope - Automated OSINT Intelligence Platform
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-cyberscope.vercel.app-00f2fe?style=for-the-badge&logo=vercel&logoColor=000)](https://cyberscope.vercel.app)
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel)](https://cyberscope.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-cyberscope--osint--app.vercel.app-00f2fe?style=for-the-badge&logo=vercel&logoColor=000)](https://cyberscope-osint-app.vercel.app)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel)](https://cyberscope-osint-app.vercel.app)
 [![Python Version](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Framework](https://img.shields.io/badge/Framework-Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 
@@ -117,7 +117,7 @@ CyberScope/
 ## 🌐 Live Deployment
 
 Access the live platform on Vercel:
-👉 **[https://cyberscope.vercel.app](https://cyberscope.vercel.app)**
+👉 **[https://cyberscope-osint-app.vercel.app](https://cyberscope-osint-app.vercel.app)**
 
 ---
 
