@@ -1,14 +1,44 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import os
+import re
+import ipaddress
 from dotenv import load_dotenv
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+import phonenumbers
+from phonenumbers import carrier, geocoder, timezone
+from config.settings import Config
 
 load_dotenv()
 
 app = Flask(__name__)
+app.config.from_object(Config)
+
+# Rate Limiting
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["100 per day", "30 per hour"],
+    storage_uri=app.config.get("RATELIMIT_STORAGE_URI", "memory://"),
+)
 
 IP_API = "http://ip-api.com/json/"
-PHONE_API_KEY = os.getenv("PHONE_API_KEY")
+
+def is_valid_public_ip(ip_str):
+    try:
+        ip = ipaddress.ip_address(ip_str)
+        if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_multicast or ip.is_reserved:
+            return False
+        return True
+    except ValueError:
+        return False
+
+def sanitize_username(username):
+    # Allow alphanumeric, underscore, dot, and dash
+    if not re.match(r'^[a-zA-Z0-9_\.\-]+$', username):
+        return False
+    return True
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -16,12 +46,16 @@ def home():
 
 # IP Analysis API Endpoint
 @app.route("/analyze-ip", methods=["POST"])
+@limiter.limit("10 per minute")
 def analyze_ip():
     try:
         ip = request.form.get("ip_address", "").strip()
         
         if not ip:
             return jsonify({"error": "IP address not provided"}), 400
+            
+        if not is_valid_public_ip(ip):
+            return jsonify({"error": "Invalid or private IP address"}), 400
         
         response = requests.get(IP_API + ip, timeout=10)
         ip_data = response.json()
@@ -29,7 +63,6 @@ def analyze_ip():
         if not ip_data.get("status") == "success":
             return jsonify({"error": "Invalid IP address or API error"}), 400
         
-        # Format response like GhostTR.py
         result = {
             "IP_Address": ip,
             "Country": ip_data.get("country", "N/A"),
@@ -52,68 +85,56 @@ def analyze_ip():
         return jsonify(result)
     
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": "An internal error occurred."}), 500
 
 # Phone Analysis API Endpoint
 @app.route("/analyze-phone", methods=["POST"])
+@limiter.limit("10 per minute")
 def analyze_phone():
     try:
         phone = request.form.get("phone_number", "").strip()
         
         if not phone:
             return jsonify({"error": "Phone number not provided"}), 400
+            
+        if not re.match(r'^\+?[0-9\s\-]+$', phone):
+            return jsonify({"error": "Invalid phone format"}), 400
         
-        # Using phonenumbers library for phone analysis
-        try:
-            import phonenumbers
-            from phonenumbers import carrier, geocoder, timezone
-            
-            parsed_number = phonenumbers.parse(phone, None)
-            
-            region_code = phonenumbers.region_code_for_number(parsed_number)
-            carrier_name = carrier.name_for_number(parsed_number, "en")
-            location = geocoder.description_for_number(parsed_number, "en")
-            tz = timezone.time_zones_for_number(parsed_number)
-            
-            result = {
-                "Phone_Number": phone,
-                "Country": location or "N/A",
-                "Region_Code": region_code or "N/A",
-                "Operator": carrier_name or "N/A",
-                "Timezone": tz[0] if tz else "N/A",
-                "Valid": "Yes" if phonenumbers.is_valid_number(parsed_number) else "No"
-            }
-            
-            return jsonify(result)
+        parsed_number = phonenumbers.parse(phone, None)
         
-        except ImportError:
-            # Fallback to API if phonenumbers not installed
-            url = f"http://apilayer.net/api/validate?access_key={PHONE_API_KEY}&number={phone}"
-            response = requests.get(url, timeout=10)
-            phone_data = response.json()
-            
-            result = {
-                "Phone_Number": phone,
-                "Valid": "Yes" if phone_data.get("valid") else "No",
-                "Country": phone_data.get("country_name", "N/A"),
-                "Carrier": phone_data.get("carrier", "N/A"),
-                "Line_Type": phone_data.get("line_type", "N/A"),
-                "Country_Code": phone_data.get("country_code", "N/A"),
-            }
-            
-            return jsonify(result)
+        region_code = phonenumbers.region_code_for_number(parsed_number)
+        carrier_name = carrier.name_for_number(parsed_number, "en")
+        location = geocoder.description_for_number(parsed_number, "en")
+        tz = timezone.time_zones_for_number(parsed_number)
+        
+        result = {
+            "Phone_Number": phone,
+            "Country": location or "N/A",
+            "Region_Code": region_code or "N/A",
+            "Operator": carrier_name or "N/A",
+            "Timezone": tz[0] if tz else "N/A",
+            "Valid": "Yes" if phonenumbers.is_valid_number(parsed_number) else "No"
+        }
+        
+        return jsonify(result)
     
+    except phonenumbers.phonenumberutil.NumberParseException:
+         return jsonify({"error": "Invalid phone number format."}), 400
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": "An internal error occurred."}), 500
 
 # Username Analysis API Endpoint
 @app.route("/analyze-username", methods=["POST"])
+@limiter.limit("10 per minute")
 def analyze_username():
     try:
         username = request.form.get("username", "").strip()
         
         if not username:
             return jsonify({"error": "Username not provided"}), 400
+            
+        if not sanitize_username(username):
+            return jsonify({"error": "Invalid username format"}), 400
         
         platforms = {
             "Instagram": f"https://www.instagram.com/{username}",
@@ -139,7 +160,7 @@ def analyze_username():
         return jsonify(result)
     
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": "An internal error occurred."}), 500
 
 @app.route("/resources")
 def resources():
@@ -164,7 +185,6 @@ resource_meta = {
     'github-repositories': {'title':'GitHub Repositories','description':'Open-source tools and scripts for OSINT.', 'image':'images/resource-1.svg'},
     'certifications': {'title':'Certifications','description':'OSINT-related professional certification info.','image':'images/resource-2.svg'}
 }
-
 
 @app.route('/resources/<slug>')
 def resource_detail(slug):
@@ -192,7 +212,6 @@ blog_meta = {
     'building-osint-framework': {'title':'Building Your Own OSINT Framework','description':'Organize tools and workflows for efficient research.','image':'images/blog-1.svg'}
 }
 
-
 @app.route('/blog/<slug>')
 def blog_detail(slug):
     meta = blog_meta.get(slug)
@@ -206,68 +225,19 @@ def tutorials():
 
 # Tutorial and content metadata for internal pages
 tutorial_meta = {
-    'introduction-to-cyberscope': {
-        'title': 'Introduction to CyberScope',
-        'description': 'Overview of the CyberScope interface and main features.',
-        'image': 'images/tutorials-1.png'
-    },
-    'account-setup-and-configuration': {
-        'title': 'Account Setup and Configuration',
-        'description': 'How to set up and configure your CyberScope account.',
-        'image': 'images/tutorials-2.png'
-    },
-    'understanding-osint-basics': {
-        'title': 'Understanding OSINT Basics',
-        'description': 'Fundamental concepts and ethical considerations of OSINT.',
-        'image': 'images/tutorials-3.png'
-    },
-    'ip-geolocation-lookup': {
-        'title': 'IP Geolocation Lookup',
-        'description': 'How to perform IP geolocation lookups and interpret results.',
-        'image': 'images/tutorials-4.png'
-    },
-    'advanced-ip-analysis': {
-        'title': 'Advanced IP Analysis',
-        'description': 'Deep dive into advanced IP analysis techniques.',
-        'image': 'images/tutorials-5.png'
-    },
-    'bulk-ip-analysis': {
-        'title': 'Bulk IP Analysis and Automation',
-        'description': 'Methods for processing and automating IP intelligence collection.',
-        'image': 'images/tutorials-6.png'
-    },
-    'phone-number-lookup': {
-        'title': 'Phone Number Lookup Guide',
-        'description': 'Lookup phone number carrier and location metadata.',
-        'image': 'images/tutorials-6.1.png'
-    },
-    'phone-number-verification': {
-        'title': 'Phone Number Verification Techniques',
-        'description': 'Techniques to verify and validate phone numbers.',
-        'image': 'images/tutorials-7.png'
-    },
-    'telecommunications-osint': {
-        'title': 'Telecommunications OSINT Deep Dive',
-        'description': 'Understanding telecom infrastructure for OSINT research.',
-        'image': 'images/tutorials-8.png'
-    },
-    'username-scanner-basics': {
-        'title': 'Username Scanner Basic Usage',
-        'description': 'How to scan usernames across platforms efficiently.',
-        'image': 'images/tutorials-9.png'
-    },
-    'account-linking-analysis': {
-        'title': 'Account Linking and Connection Analysis',
-        'description': 'Methods for linking accounts and network analysis.',
-        'image': 'images/tutorials-10.png'
-    },
-    'social-media-profile-analysis': {
-        'title': 'Social Media Profile Analysis',
-        'description': 'Analyzing social profiles to extract OSINT.',
-        'image': 'images/tutorials-11.png'
-    }
+    'introduction-to-cyberscope': {'title': 'Introduction to CyberScope', 'description': 'Overview of the CyberScope interface and main features.', 'image': 'images/tutorials-1.png'},
+    'account-setup-and-configuration': {'title': 'Account Setup and Configuration', 'description': 'How to set up and configure your CyberScope account.', 'image': 'images/tutorials-2.png'},
+    'understanding-osint-basics': {'title': 'Understanding OSINT Basics', 'description': 'Fundamental concepts and ethical considerations of OSINT.', 'image': 'images/tutorials-3.png'},
+    'ip-geolocation-lookup': {'title': 'IP Geolocation Lookup', 'description': 'How to perform IP geolocation lookups and interpret results.', 'image': 'images/tutorials-4.png'},
+    'advanced-ip-analysis': {'title': 'Advanced IP Analysis', 'description': 'Deep dive into advanced IP analysis techniques.', 'image': 'images/tutorials-5.png'},
+    'bulk-ip-analysis': {'title': 'Bulk IP Analysis and Automation', 'description': 'Methods for processing and automating IP intelligence collection.', 'image': 'images/tutorials-6.png'},
+    'phone-number-lookup': {'title': 'Phone Number Lookup Guide', 'description': 'Lookup phone number carrier and location metadata.', 'image': 'images/tutorials-6.1.png'},
+    'phone-number-verification': {'title': 'Phone Number Verification Techniques', 'description': 'Techniques to verify and validate phone numbers.', 'image': 'images/tutorials-7.png'},
+    'telecommunications-osint': {'title': 'Telecommunications OSINT Deep Dive', 'description': 'Understanding telecom infrastructure for OSINT research.', 'image': 'images/tutorials-8.png'},
+    'username-scanner-basics': {'title': 'Username Scanner Basic Usage', 'description': 'How to scan usernames across platforms efficiently.', 'image': 'images/tutorials-9.png'},
+    'account-linking-analysis': {'title': 'Account Linking and Connection Analysis', 'description': 'Methods for linking accounts and network analysis.', 'image': 'images/tutorials-10.png'},
+    'social-media-profile-analysis': {'title': 'Social Media Profile Analysis', 'description': 'Analyzing social profiles to extract OSINT.', 'image': 'images/tutorials-11.png'}
 }
-
 
 @app.route('/tutorials/<slug>')
 def tutorial_detail(slug):
@@ -299,7 +269,6 @@ def disclaimer():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
-
 
 if __name__ == "__main__":
     app.run(debug=True)
